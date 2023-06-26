@@ -19,18 +19,15 @@
  */
 
 const binarySearch = function(arr, target) {
-    // STEP 0: declare limits to establish a search range
+    // STEP 0: check for edge case first, improves time/space complexity when true
+    if(arr[0] === target) {
+        return 0;  // 0(1) time complexity if true
+    } 
+
+    // STEP 1: define search range variables
     let upperBound = arr.length -1;
     let lowerBound = 0;
-    let middle = 0;
-
-    // edge case: target in 0th idx
-    if(arr[0] === target) {
-        return 0;
-    // edge case: target not a number
-    } else if(typeof target != 'number') {
-        return -1;
-    }
+    let middle = 0;    
 
     // STEP 1: use loop to iterate through entire arr
     while(lowerBound <= upperBound) {
@@ -57,48 +54,61 @@ const binarySearch = function(arr, target) {
     return -1;  // without finding an index to return
 };
 
+
 // STEP 7: define test parameters (arrays must be sorted)
-var arr1 = [103, 104, 104, 108, 109, 111, 112];  // best case with target in first arr index
+var arr1 = [103, 104, 104, 108, 109, 111, 112];  // best case: target in first arr index
 var tar1 = 103;
 
-var arr2 = [4, 5, 6, 10, 11, 12, 100, 101, 301];  // worst case with target in last arr index
+var arr2 = [4, 5, 6, 10, 11, 12, 100, 101, 301];  // worst case: target in last arr index
 var tar2 = 301;
 
-var arr3 = [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3];  // null case with target not present in arr
+var arr3 = [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3];  // null case: target not present in arr
 var tar3 = 999;
 
-var arr4 = [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3];  // edge case with target not storing a number
-var tar4 = "uno";
+var arr4 = [0, 0, 0, 1, 1, 1, 2, 2, 2, 3, 3, 3];  // edge case: target type != arr elements type
+var tar4 = "two";
+
+var arr5 = [0, "one", 2, 3, "four", 5, 6, null];  // edge case: arr of mult types, target = arr
+var tar5 = [5];
+
 
 // STEP 8: invoke function to test each case
 var test1 = binarySearch(arr1, tar1);  // return value of function stored in variable
-// best case test -> expected output of 0
+// best case test: expected output = 0
 if(test1 > -1) {
-    console.log(tar1 + " found in index number " + test1 + ".");
+    console.log(tar1 + " found in index number " + test1 + " (output = " + test1 + ").");
 } else {
-    console.log(tar1 + " not found in input array.");
+    console.log(tar1 + " not found in input array (output = " + test1 + ").");
 }
 
 var test2 = binarySearch(arr2, tar2);
-// worst case test -> expected output of 8
+// worst case test: expected output = 8
 if(test2 > -1) {
-    console.log(tar2 + " found in index number " + test2 + ".");
+    console.log(tar2 + " found in index number " + test2 + " (output = " + test2 + ").");
 } else {
-    console.log(tar2 + " not found in input array.");
+    console.log(tar2 + " not found in input array (output = " + test2 + ").");
 }
 
 var test3 = binarySearch(arr3, tar3);
-// null case test -> expected output of -1 (not found)
+// null case test: expected output = -1 (not found)
 if(test3 > -1) {
-    console.log(tar3 + " found in index number " + test3 + ".");
+    console.log(tar3 + " found in index number " + test3 + " (output = " + test3 + ").");
 } else {
-    console.log(tar3 + " not found in input array.");
+    console.log(tar3 + " not found in input array (output = " + test3 + ").");
 }
 
 var test4 = binarySearch(arr4, tar4);
-// edge case test -> expected output of -1 (not found)
+// edge case test: expected output = -1 (not found)
 if(test4 > -1) {
-    console.log(tar4 + " found in index number " + test4 + ".");
+    console.log(tar4 + " found in index number " + test4 + " (output = " + test4 + ").");
 } else {
-    console.log(tar4 + " not found in input array.");
+    console.log(tar4 + " not found in input array (output = " + test4 + ").");
+}
+
+var test5 = binarySearch(arr5, tar5);
+// edge case test: expected output = -1 (not found)
+if(test5 > -1) {
+    console.log(tar5 + " found in index number " + test5 + " (output = " + test5 + ").");
+} else {
+    console.log(tar5 + " not found in input array (output = " + test5 + ").");
 }
