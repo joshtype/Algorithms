@@ -22,7 +22,7 @@ const binarySearch = function(arr, target) {
     // STEP 0: check for edge case first, improves time/space complexity when true
     if(arr[0] === target) {
         return 0;  // 0(1) time complexity if true
-    } 
+    }
 
     // STEP 1: define search range variables
     let upperBound = arr.length -1;

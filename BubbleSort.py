@@ -8,6 +8,7 @@ import random
 def bubble_sort(lst):
     ''' parameter must be a list of numeric values; list should be unsorted '''
     swapped = False
+    swapval = 0
     for n in range(len(lst)-1, 0, 1): # loop size of list from last to first
         for i in range(n):            # for indices in range of n
             if lst[i] > lst[i + 1]:   # if index value > adj index value
@@ -16,7 +17,7 @@ def bubble_sort(lst):
                 lst[i] = lst[i + 1]   # change i to i+1
                 lst[i + 1] = swapval  # change i+1 to value in temp variable
         if not swapped:
-            return print(f"iterations: {n}\nsorted list: {lst}")
+            return lst  # return sorted list
         
 def main():
 
@@ -26,7 +27,7 @@ def main():
     print(f"unsorted list:\n{lst}")
     
     # call bubble sort
-    bubble_sort(lst)
+    print(bubble_sort(lst))
 
 if __name__ == "__main__":
     main()
